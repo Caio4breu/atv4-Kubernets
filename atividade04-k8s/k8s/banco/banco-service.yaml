@@ -1,0 +1,13 @@
+# Grupo: Caio Abreu, Cassiano Abreu, Enzo Aquino, Gabriel Naoki e Wyllian Mariano
+# Service interno do banco (ClusterIP). A aplicação conecta usando o nome banco-service.
+apiVersion: v1
+kind: Service
+metadata:
+  name: banco-service
+spec:
+  type: ClusterIP
+  selector:
+    app: banco
+  ports:
+    - port: 5432
+      targetPort: 5432

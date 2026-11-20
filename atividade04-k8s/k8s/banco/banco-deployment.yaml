@@ -1,0 +1,56 @@
+# Grupo: Caio Abreu, Cassiano Abreu, Enzo Aquino, Gabriel Naoki e Wyllian Mariano
+# Banco de dados PostgreSQL (1 réplica, com volume persistente)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: banco
+  labels:
+    app: banco
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate          # evita dois pods usando o mesmo volume ao mesmo tempo
+  selector:
+    matchLabels:
+      app: banco
+  template:
+    metadata:
+      labels:
+        app: banco
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: tarefas
+            - name: POSTGRES_USER
+              value: tarefas_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credenciais
+                  key: POSTGRES_PASSWORD
+            - name: PGDATA                  # subpasta, evita erro com o lost+found do volume
+              value: /var/lib/postgresql/data/pgdata
+          volumeMounts:
+            - name: dados
+              mountPath: /var/lib/postgresql/data
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "tarefas_user", "-d", "tarefas"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+      volumes:
+        - name: dados
+          persistentVolumeClaim:
+            claimName: banco-pvc

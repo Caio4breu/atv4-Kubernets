@@ -1,0 +1,12 @@
+# Grupo: Caio Abreu, Cassiano Abreu, Enzo Aquino, Gabriel Naoki e Wyllian Mariano
+# Volume persistente para os dados do PostgreSQL (não se perdem ao reiniciar o pod)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: banco-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
