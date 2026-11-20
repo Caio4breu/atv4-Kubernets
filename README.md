@@ -70,15 +70,25 @@ minikube service app-service --url
 
 ## Evidências
 
-As capturas de tela estão na pasta `evidencias/`:
+### 1. `kubectl get pods` com banco e 2 réplicas da aplicação
 
-| Evidência | Arquivo |
-|---|---|
-| `kubectl get pods` com banco e 2 réplicas da aplicação rodando | `evidencias/01-kubectl-get-pods.jpg` |
-| Aplicação no navegador, mostrando o pod que atendeu | `evidencias/02-aplicacao-navegador.jpg` |
-| Grafana com métricas do Prometheus | `evidencias/03-grafana-metricas.jpg` |
-| Grafana com logs do Loki | `evidencias/04-grafana-logs.jpg` |
-| Grafana com traces do Tempo | `evidencias/05-grafana-traces.jpg` |
+![kubectl get pods](evidencias/01-kubectl-get-pods.jpg)
+
+### 2. Aplicação no navegador, mostrando o pod que atendeu
+
+![Aplicação no navegador](evidencias/02-aplicacao-navegador.jpg)
+
+### 3. Grafana com métricas do Prometheus
+
+![Grafana com métricas do Prometheus](evidencias/03-grafana-metricas.jpg)
+
+### 4. Grafana com logs do Loki
+
+![Grafana com logs do Loki](evidencias/04-grafana-logs.jpg)
+
+### 5. Grafana com traces do Tempo
+
+![Grafana com traces do Tempo](evidencias/05-grafana-traces.jpg)
 
 ## Observações
 
