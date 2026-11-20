@@ -1,0 +1,10 @@
+# Grupo: Caio Abreu, Cassiano Abreu, Enzo Aquino, Gabriel Naoki e Wyllian Mariano
+# Loki (logs) + Promtail (coleta os logs dos pods)
+# Instalação: helm install loki grafana/loki-stack -n observabilidade -f values-loki.yaml
+loki:
+  isDefault: false
+  enabled: true
+promtail:
+  enabled: true
+grafana:
+  enabled: false                 # o Grafana já vem do kube-prometheus-stack

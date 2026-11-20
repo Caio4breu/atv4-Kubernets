@@ -1,0 +1,16 @@
+# Grupo: Caio Abreu, Cassiano Abreu, Enzo Aquino, Gabriel Naoki e Wyllian Mariano
+# Prometheus + Grafana (chart kube-prometheus-stack)
+# Instalação: helm install kube-prometheus prometheus-community/kube-prometheus-stack -n observabilidade -f values-kube-prometheus.yaml
+grafana:
+  adminUser: admin
+  adminPassword: admin123        # senha de desenvolvimento (projeto acadêmico)
+  # Conecta o Grafana às fontes de dados de logs (Loki) e traces (Tempo)
+  additionalDataSources:
+    - name: Loki
+      type: loki
+      url: http://loki.observabilidade.svc.cluster.local:3100
+      access: proxy
+    - name: Tempo
+      type: tempo
+      url: http://tempo.observabilidade.svc.cluster.local:3200
+      access: proxy
