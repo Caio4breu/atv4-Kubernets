@@ -1,0 +1,14 @@
+# Grupo: Caio Abreu, Cassiano Abreu, Enzo Aquino, Gabriel Naoki e Wyllian Mariano
+# Configurações não sensíveis da aplicação
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  DB_HOST: banco-service
+  DB_PORT: "5432"
+  DB_NAME: tarefas
+  DB_USER: tarefas_user
+  OTEL_SERVICE_NAME: tarefas-app
+  # Endereço do Tempo (namespace observabilidade) para receber os traces
+  OTEL_EXPORTER_OTLP_ENDPOINT: http://tempo.observabilidade.svc.cluster.local:4318
